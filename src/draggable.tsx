@@ -1,23 +1,25 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
-
+import { CSS } from "@dnd-kit/utilities";
 interface DraggableProps {
   children: React.ReactNode;
+  id: string;
 }
-const Draggable = ({ children }: DraggableProps) => {
+const Draggable = ({ children, id }: DraggableProps) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: "draggable",
+    id,
   });
-  const style = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : undefined;
+  // console.log(transform);
+  const style = {
+    transform: CSS.Transform.toString(transform),
+  };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      {children}
-    </button>
+    <div ref={setNodeRef}>
+      <button style={style} {...listeners} {...attributes}>
+        {children}
+      </button>
+    </div>
   );
 };
 export default Draggable;
