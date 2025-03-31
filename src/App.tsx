@@ -7,7 +7,7 @@ import Draggable from "./draggable";
 function App() {
   function handleDragEnd(event: DragEndEvent) {
     console.log(event);
-    const {} = event;
+    const { activatorEvent } = event;
     // if (event.over && event.over.id === "droppable") {
 
     // }
